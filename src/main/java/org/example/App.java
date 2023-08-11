@@ -34,7 +34,7 @@ public class App
         System.out.println("total "+total);
 
 
-        // reason for using strings in big decimal
+        // reason for using strings in big decimal to maintain preposition
         final String[] tests = {
                 "5.456",
                 "8",
@@ -57,8 +57,35 @@ public class App
                     bd,
                     bd.unscaledValue(),
                     bd.scale(),
-                    bd.precision());
+                    bd.precision());}
 
-        }
+
+        // Dont use decimals as your prescription will be through the roof and not accurate
+        final double[] doubles = {
+                5.456,
+                8,
+                10000.000001,
+                .123
+        };
+
+        Arrays.setAll(bds,i -> new BigDecimal(doubles[i]));
+        System.out.println("-".repeat(50));
+
+        System.out.printf("%-14s %-15s %-8s %s%n",
+                "Value",
+                "Unscaled Value",
+                "Scale",
+                "Precision");
+
+        for(var bd : bds){
+
+            System.out.printf("%-15s %-15d %-8d %d %n",
+                    bd,
+                    bd.unscaledValue(),
+                    bd.scale(),
+                    bd.precision());}
+
+
+
     }
 }
